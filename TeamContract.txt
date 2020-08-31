@@ -44,21 +44,21 @@ agreement. Then commit the revised contract via git.
 
 TEAM NAME [type your team name here]: 
 
-
+'; DROP TABLE teams;
 
 TEAM MEMBERS AND CONTACT INFO:
 
    MEMBER              MOBILE PHONE           PREFERRED EMAIL
-1.
-2.
-3. 
-4.
+1. Jacob Ballard       (859)457-6770          jacob.ballard@centre.edu
+2. Noah Fields         (615)830-3398          noah.feld@centre.edu
+3. Xu Song (Becky)     (859)6910204           xu.song@centre.edu
+4. Malachi Beerram     (347)845-8180          malachi.beerram@centre.edu
 
 
 
 AGREED MEETING TIME/PLACE/LINK FOR REGULAR WEEKLY TEAM MEETINGS/WORK:
 
-
+Mondays at 8:30 PM 
 
 
 
@@ -74,22 +74,22 @@ reason for the penalty is to help teams stay on track and have greater
 success in completing the project as a whole.]
 
 PHASE 1: DESIGN
-1. Team Contract 					08/28
+1. Team Contract 					      08/28
 2. Mission & Objectives					09/01
 3. Tables, Fields, & PKs				09/04
 4. Table Relationships					09/08
-5. Business Rules					09/11
-6. Views, UI Flow (FINAL DESIGN)			09/15
+5. Business Rules					      09/11
+6. Views, UI Flow (FINAL DESIGN)		09/15
 
 PHASE 2: IMPLEMENTATION
 1. Coding Plan						09/18
 2. SQL Scripts						09/22
-3. First PHP pages					09/25
+3. First PHP pages				09/25
 4. More PHP pages					10/02
 5. Final Delivery					10/06
 
 
-WE ALSO AGREE:
+WE ALSO AGREE: to have fun :)
 
 [Type anything else that as a team you decide should be included in
 your covenant.  It is OK to leave this blank.]
@@ -97,8 +97,8 @@ your covenant.  It is OK to leave this blank.]
 
 
 
-WE HELD OUR INITIAL TEAM MEETING ON [enter date and time]:
-AT [type location/provide meeting link of meeting; e.g., Olin 023]:
+WE HELD OUR INITIAL TEAM MEETING ON [August 30th 2020]:
+Zoom meeting link: https://centre.zoom.us/j/93374543400
 
 
 
@@ -107,6 +107,12 @@ CONTRACT. WE UNDERSTAND THAT TO MODIFY THIS COVENANT, WE WILL HAVE TO
 HAVE UNANIMOUS AGREEMENT AT A MEETING WHEN ALL MEMBERS ARE PRESENT."
 
 SIGNED (Full name and date):
+
+William Jacob Ballard, 8/30/2020
+Malachi Beerram 8.30.20
+Noah Feld, 8/30/2020
+Xu Song    8/30/2020
+
 
 [Type your name to indicate agreement.  Note: Each team member should
 type his or her own name.  Please do not sign this agreement on behalf
