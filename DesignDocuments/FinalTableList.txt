@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Initial message
 
 
@@ -1077,3 +1078,6 @@ Operations Allowed:
                 /    _ 
 
 NOTES:
+=======
+Initial message
+>>>>>>> 2b0fbb91032c255f658e0df6ed3eb432426de4f1
