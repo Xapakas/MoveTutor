@@ -1,1 +1,1 @@
-DELETE FROM moves WHERE move_name = ?;
+prepare("DELETE FROM moves WHERE move_name = ?;");
