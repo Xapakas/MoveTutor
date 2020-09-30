@@ -1,1 +1,1 @@
-prepare("DELETE FROM known_moves WHERE poke_id=? AND move_name=?"
+prepare("DELETE FROM known_moves WHERE poke_id=? AND move_name=?;")
