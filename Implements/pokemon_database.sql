@@ -73,16 +73,16 @@ CREATE TABLE poke_types (
 
 
 -- add values to validation table
--- INSERT INTO types (poke_type)
--- VALUES ('normal'),
---        ('fighting'),
---        ('flying'),
---        ('poison'),
---        ('ground'),
---        ('rock'),
---        ('bug'),
---        ('ghost'),
---        ('steel'),
---        ('fire'),
---        ('water'),
---        ('glass');
+INSERT INTO types (poke_type)
+VALUES ('normal'),
+       ('fighting'),
+       ('flying'),
+       ('poison'),
+       ('ground'),
+       ('rock'),
+       ('bug'),
+       ('ghost'),
+       ('steel'),
+       ('fire'),
+       ('water'),
+       ('glass');
