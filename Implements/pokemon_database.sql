@@ -17,6 +17,12 @@ CREATE TABLE pokemons (
     poke_name              VARCHAR(100)               
 );
 
+/* Stores different types that can be associated with 0 or many Pokemon */
+CREATE TABLE types (
+    PRIMARY KEY (poke_type),
+    poke_type   VARCHAR(16)
+);
+
 /* Table describes a move associated with 0 or many Pokemon through the KnownMoves and LearnHistory tables */
 CREATE TABLE moves (
     PRIMARY KEY (move_name),
@@ -31,21 +37,22 @@ CREATE TABLE moves (
 
 /* Table associates a Pokemon with 1 - 4 moves */
 CREATE TABLE known_moves (
-    PRIMARY KEY (poke_id,move_name)
-    poke_id     INT         NOT NULL,
-    move_name   VARCHAR(32) NOT NULL,
-    FOREIGN KEY (poke_id) REFERENCES pokemons (poke_id)
+    PRIMARY KEY (poke_id,move_name),
+    poke_id     INT          NOT NULL,
+    move_name   VARCHAR(32)  NOT NULL,
+    FOREIGN KEY (poke_id) REFERENCES pokemons(poke_id)
                             ON DELETE RESTRICT,
-    FOREIGN KEY (move_name) REFERENCES moves (move_name)ON DELETE RESTRIC
-    T 
+    FOREIGN KEY (move_name) REFERENCES moves(move_name)
+                            ON DELETE RESTRICT
+    
 );
 
 /* If a Pokemon is taught a move, it's stored here */
 CREATE TABLE learn_history (
     PRIMARY KEY (poke_id, move_name),
-    poke_id     INT     NOT NULL,
-    move_name   INT     NOT NULL,
-    learn_date  DATE    DEFAULT CURRENT_TIMESTAMP,
+    poke_id     INT         NOT NULL,
+    move_name   VARCHAR(32) NOT NULL,
+    learn_date  DATE        DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (poke_id) REFERENCES pokemons (poke_id)
                         ON DELETE RESTRICT,
     FOREIGN KEY (move_name) REFERENCES moves (move_name)
@@ -55,31 +62,27 @@ CREATE TABLE learn_history (
 /* Stores the type of a Pokemon, Pokemon have 1 or 2 types */
 CREATE TABLE poke_types (
     PRIMARY KEY (poke_id, poke_type),
-    poke_id     INT     NOT NULL,
-    poke_type   INT     NOT NULL,
+    poke_id     INT     ,
+    poke_type   VARCHAR(16),
     FOREIGN KEY (poke_id) REFERENCES pokemons (poke_id)
                         ON DELETE RESTRICT,
     FOREIGN KEY (poke_type) REFERENCES types (poke_type)
                         ON DELETE RESTRICT
 );
 
-/* Stores different types that can be associated with 0 or many Pokemon */
-CREATE TABLE types (
-    PRIMARY KEY (poke_type),
-    poke_type   VARCHAR(16) NOT NULL;
-);
+
 
 -- add values to validation table
-INSERT INTO types (poke_type)
-VALUES ('normal'),
-       ('fighting'),
-       ('flying'),
-       ('poison'),
-       ('ground'),
-       ('rock'),
-       ('bug'),
-       ('ghost'),
-       ('steel'),
-       ('fire'),
-       ('water'),
-       ('glass');
+-- INSERT INTO types (poke_type)
+-- VALUES ('normal'),
+--        ('fighting'),
+--        ('flying'),
+--        ('poison'),
+--        ('ground'),
+--        ('rock'),
+--        ('bug'),
+--        ('ghost'),
+--        ('steel'),
+--        ('fire'),
+--        ('water'),
+--        ('glass');
