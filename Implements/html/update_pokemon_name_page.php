@@ -41,7 +41,7 @@
         
 
         //wrap table in a form and call self
-        echo '<form action="update_pokemon_name_species_page.php" method=POST>';
+        echo '<form action="update_pokemon_name_page.php" method=POST>';
         // Begin header ---------------------------------------------
         echo "<table>\n<thead>\n<tr>";
         
