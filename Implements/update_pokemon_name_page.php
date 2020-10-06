@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Pokemon Name or Species</title>
+<title>Update Pokemon Name</title>
 </head>
 <body>
 <?php

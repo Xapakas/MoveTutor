@@ -33,7 +33,12 @@ li:hover{
 <body>
 
 
+<p>
+<b>Hyperlinks go to currently working pages</b><br>
+<a href="./insert_move_page.php">Insert Move Page</a> <br>
 
+<a href="./update_pokemon_name_page.php">Update Pokemon Name Page</a>
+</p>
 
 <?php
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
@@ -75,4 +80,5 @@ echo "</ul>";
 ?>
 
 </body>
+
 </html>
