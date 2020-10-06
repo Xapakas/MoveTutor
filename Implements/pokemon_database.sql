@@ -86,3 +86,11 @@ VALUES ('normal'),
        ('fire'),
        ('water'),
        ('glass');
+
+-- Add values to pokemon for testing
+
+INSERT INTO pokemons (poke_species, poke_name)
+VALUES  ('char', 'charmander'),
+        ('bob', 'lizard'),
+        ('charles', 'lollipop'),
+        ('bake', 'ry');

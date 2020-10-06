@@ -17,8 +17,8 @@ error_reporting(E_ALL);
    added to the group repository. */
 
 $dbhost = 'localhost';
-$dbuser = 'noahf';
-$dbpass = 'password';
+$dbuser = 'webuser';
+$dbpass = 'pass';
 $dbname = 'move_tutor'; /* Change to move_tutor */
 
 /* Make connection, and return error if it fails */

@@ -1,1 +1,1 @@
-prepare("UPDATE pokemons SET poke_name= ? WHERE poke_id = ?;")
+UPDATE pokemons SET poke_name= ? WHERE poke_id = ?;
