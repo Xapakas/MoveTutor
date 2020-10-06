@@ -31,13 +31,15 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 ?>
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
+  <a class="mainpage" href="#news">Main Move</a>
+  <a href="#news">Delete Move</a>
   <a href="#news">Update Move</a>
-  <a href="./insert_type_page.php">Type</a>
 </div>
 
 <div class="main">
 <div class="header">
 <h2>Insert A <i><u>New Move</u></i> !</h2>
+<p>Insert a move here, you can do other operations through sidebar....</p>
 </div>
 <div class="contents">
 <form action="insert_move_page.php" method="post">

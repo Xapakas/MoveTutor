@@ -101,14 +101,13 @@ echo "<ul>";
         }
     // end connection
     $conn->close();
-    echo "</ol></li>";
-
-    echo "<li><b>Check on the specific Move</b></li>";
-    echo "<li><b>Check on the specific Pokemon</b></li>";
-echo "</ul>";
-
 
 ?>
+</ol>
+</li>
+<li><b><a href="#checkmove"> Check on the specific Move</a></b></li>
+<li><b><a href="#checkpoke">Check on the specific Pokemon</a></b></li>
+</ul>
 </div>
 </div>
 </body>

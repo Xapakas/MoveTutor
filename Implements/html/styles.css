@@ -54,6 +54,10 @@ input[type=text], select {
     background-color: #008CBA;
     color: white;
   }
+  .sidebar a.mainpage {
+    background-color: #108bb4b2;
+    color: white;
+  }
   
   .sidebar a:hover:not(.active) {
     background-color: #555;
