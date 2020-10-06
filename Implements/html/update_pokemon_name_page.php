@@ -7,8 +7,23 @@
 <html>
 <head>
 <title>Update Pokemon Name</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="sidebar">
+  <a class="active" href="./menu_page.php">Menu</a>
+  <a href="#news">Pokemon</a>
+  <a href="#news">Insert Pokemon</a>
+  <a href="#news">Delete Pokemon</a>
+  <a href="#news">Update Species Name</a>
+</div>
+
+<div class="main">
+<div class="header">
+<h2>Update <i><u>Pokemon Name</u></i> !</h2>
+<p>Update Pokemon name here, you can do other operations through sidebar....</p>
+</div>
+<div class="contents">
 <?php
     // Show ALL PHP's errors.
     ini_set('display_errors', 1);
@@ -34,9 +49,9 @@
         $fields = $result->fetch_fields();
         for ($i=0; $i<$n_cols + 1; $i++){
             if ($i == 0) {
-                echo "<td><b>Update?</b></td>";
+                echo "<th>Update?</th>";
             } else {
-                echo "<td><b>" . $fields[$i - 1]->name . "</b></td>";
+                echo "<th>" . $fields[$i - 1]->name . "</th>";
             }
             
         }
@@ -135,7 +150,8 @@
 
     
 ?>
-
+</div>
+</div>
 </body>
 </html>
 

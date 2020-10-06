@@ -2,105 +2,7 @@
 <html>
 <head>
     <title>Add a New Move</title>
-    <style>
-    input[type=text], select {
-  width: 100%;
-  padding: 10px 20px;
-  margin: 20px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-font-size: 16px;
-  width: 100%;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #008CBA;
-  color: white;
-  border: 2px solid #008CBA;
-  transition-duration: 0.4s;
-}
-
-input[type=submit]:hover {
-    
-  background-color: white; 
-  color: black;
-}
-
-.contents {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  font-size: 20px;
-}
-input[list]{
-  padding: 5px 10px;
-  margin: 20px 0;
-}
-
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
- 
-.sidebar a.active {
-  background-color: #008CBA;
-  color: white;
-}
-
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-div.main {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.main {margin-left: 0;}
-}
-
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
-.header {
-  padding: 30px;
-  text-align: center;
-  background: #2EAEBD;
-  color: white;
-  font-size:27px;
-}
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -130,6 +32,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a href="#news">Update Move</a>
+  <a href="./insert_type_page.php">Type</a>
 </div>
 
 <div class="main">

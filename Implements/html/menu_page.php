@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>Manu Page</title>
+<link rel="stylesheet" href="styles.css">
 <style>
 ul {
   list-style-type: none;
@@ -29,61 +30,7 @@ li:hover{
     background: #E6E6FA;
     cursor:pointer;
 }
-.content {
-  background-color: #f2f2f2;
-  padding: 20px;
-  font-size: 20px;
-}
 
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
- 
-.sidebar a.active {
-  background-color: #008CBA;
-  color: white;
-}
-
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-div.main {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.main {margin-left: 0;}
-}
-
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
 .header {
   padding: 30px;
   text-align: center;
@@ -91,6 +38,7 @@ div.main {
   color: white;
   font-size:27px;
 }
+
 
 
 </style>
@@ -103,7 +51,7 @@ div.main {
   <a href="#pokemon">Poke_Type</a>
   <a href="#pokemon">Known_Moves</a>
   <a href="#pokemon">Moves</a>
-  <a href="./insert_type_page.php">Types</a>
+  <a href="./type_page.php">Types</a>
   <a href="#pokemon">Learn_History</a>
   <a href="#pokemon">Specific Pokemon</a>
   <a href="#pokemon">Specific Move</a>
@@ -124,7 +72,7 @@ div.main {
 </div>
 
 
-<div class="content">
+<div class="contents">
 <?php
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
@@ -146,7 +94,10 @@ echo "<ul>";
     $tableresult = $conn->query("SHOW TABLES;")or die("Last error: {$conn->error}\n");
         while ($tablename = $tableresult->fetch_array()) {
             // print each table name
-            echo "<li>".$tablename['Tables_in_move_tutor']. "</li>";
+            $name=$tablename['Tables_in_move_tutor'];
+            echo "<li>";
+            echo "<a href="."./".$name."_page.php".">".$name."</a>";
+            echo "</li>";
         }
     // end connection
     $conn->close();
