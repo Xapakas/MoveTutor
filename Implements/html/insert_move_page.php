@@ -92,6 +92,13 @@ div.main {
     float: none;
   }
 }
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #2EAEBD;
+  color: white;
+  font-size:27px;
+}
 
     </style>
 </head>
@@ -126,7 +133,9 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 </div>
 
 <div class="main">
-<h2 align="center">Insert a new move!</h2>
+<div class="header">
+<h2>Insert A <i><u>New Move</u></i> !</h2>
+</div>
 <div class="lists">
 <form action="insert_move_page.php" method="post">
 

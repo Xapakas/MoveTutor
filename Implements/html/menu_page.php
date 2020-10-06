@@ -23,12 +23,13 @@ ul li:last-child {
 ol li:hover{
     background: #D8BFD8;
     font-weight:bold;
+    cursor:pointer;
 }
 li:hover{
     background: #E6E6FA;
+    cursor:pointer;
 }
-.lists {
-  border-radius: 5px;
+.content {
   background-color: #f2f2f2;
   padding: 20px;
   font-size: 20px;
@@ -83,6 +84,14 @@ div.main {
     float: none;
   }
 }
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #2EAEBD;
+  color: white;
+  font-size:27px;
+}
+
 
 </style>
 </head>
@@ -100,19 +109,22 @@ div.main {
   <a href="#pokemon">Specific Move</a>
 </div>
 
+
+
 <div class="main">
-<h1>Welcome to <i><b><u>Tutor Database</u></b></i></h2>
-<br>
-<h2>Which operation do you want to do?</h2>
-<br>
 <p>
 <b>Hyperlinks go to currently working pages</b><br>
 <a href="./insert_move_page.php">Insert Move Page</a> <br>
 
 <a href="./update_pokemon_name_page.php">Update Pokemon Name Page</a>
 </p>
+<div class="header">
+<h1>Welcome to <i><b><u>Tutor Database</u></b></i></h2>
+<h2>Which operation do you want to do?</h2>
+</div>
 
-<div class="lists">
+
+<div class="content">
 <?php
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
