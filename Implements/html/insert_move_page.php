@@ -43,39 +43,60 @@ input[list]{
   margin: 20px 0;
 }
 
-.topnav {
-    top:0;
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
   position: fixed;
-    width: 100%;
-  overflow: hidden;
-  background-color: #333;
-}
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+  height: 100%;
+  overflow: auto;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
+.sidebar a {
+  display: block;
   color: black;
+  padding: 16px;
+  text-decoration: none;
 }
-.topnav a.active {
+ 
+.sidebar a.active {
   background-color: #008CBA;
   color: white;
 }
-.main {
-  padding: 16px;
-  margin-top: 30px;
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.main {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.main {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
 }
 
     </style>
 </head>
 <body>
-<div class="main">
+
 <?php
 
 // Show all PHP errors.
@@ -99,11 +120,12 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     exit;
 }
 ?>
-<div class="topnav">
+<div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a href="#news">Update Move</a>
 </div>
 
+<div class="main">
 <h2 align="center">Insert a new move!</h2>
 <div class="lists">
 <form action="insert_move_page.php" method="post">

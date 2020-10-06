@@ -33,41 +33,62 @@ li:hover{
   padding: 20px;
   font-size: 20px;
 }
-.topnav {
-  top:0;
-  width: 100%;
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
   position: fixed;
-  overflow: hidden;
-  background-color: #333;
-}
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+  height: 100%;
+  overflow: auto;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
+.sidebar a {
+  display: block;
   color: black;
+  padding: 16px;
+  text-decoration: none;
 }
-.topnav a.active {
+ 
+.sidebar a.active {
   background-color: #008CBA;
   color: white;
 }
-.main {
-  padding: 16px;
-  margin-top: 30px;
 
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.main {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.main {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
 }
 
 </style>
 </head>
 <body>
 
-<div class="topnav">
+<div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a href="#pokemon">Pokemon</a>
   <a href="#pokemon">Poke_Type</a>
