@@ -32,7 +32,7 @@ input[type=submit]:hover {
   color: black;
 }
 
-.lists {
+.contents {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -136,7 +136,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <div class="header">
 <h2>Insert A <i><u>New Move</u></i> !</h2>
 </div>
-<div class="lists">
+<div class="contents">
 <form action="insert_move_page.php" method="post">
 
     <label for="move_name">Move name:</label><br>

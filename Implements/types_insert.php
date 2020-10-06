@@ -1,2 +1,1 @@
-prepare("INSERT INTO types (poke_type)
-     VALUES (?);");
+INSERT INTO types (poke_type) VALUES (?);

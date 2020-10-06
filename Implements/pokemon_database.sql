@@ -12,7 +12,7 @@ USE move_tutor;
 /* Table describes a Pokemon */
 CREATE TABLE pokemons (
     PRIMARY KEY (poke_id),
-    poke_id                INT AUTO_INCREMENT,
+    poke_id                INT AUTO_INCREMENT UNIQUE,
     poke_species           VARCHAR(100) NOT NULL,
     poke_name              VARCHAR(100)               
 );
@@ -85,6 +85,12 @@ VALUES ('normal'),
        ('steel'),
        ('fire'),
        ('water'),
+       ('ice'),
+       ('electric'),
+       ('dragon'),
+       ('psychic'),
+       ('dark'),
+       ('fairy'),
        ('glass');
 
 -- Add values to pokemon for testing

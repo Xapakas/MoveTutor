@@ -103,7 +103,7 @@ div.main {
   <a href="#pokemon">Poke_Type</a>
   <a href="#pokemon">Known_Moves</a>
   <a href="#pokemon">Moves</a>
-  <a href="#pokemon">Types</a>
+  <a href="./insert_type_page.php">Types</a>
   <a href="#pokemon">Learn_History</a>
   <a href="#pokemon">Specific Pokemon</a>
   <a href="#pokemon">Specific Move</a>
