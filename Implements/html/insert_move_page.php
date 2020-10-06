@@ -2,6 +2,48 @@
 <html>
 <head>
     <title>Add a New Move</title>
+    <style>
+    input[type=text], select {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+font-size: 16px;
+  width: 100%;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #008CBA;
+  color: white;
+  border: 2px solid #008CBA;
+  transition-duration: 0.4s;
+}
+
+input[type=submit]:hover {
+    
+  background-color: white; 
+  color: black;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  font-size: 20px;
+}
+input[list]{
+  padding: 5px 10px;
+  margin: 20px 0;
+}
+
+    </style>
 </head>
 <body>
 
@@ -30,10 +72,11 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 ?>
 
 <h1>Insert a new move!</h1>
+<div>
 <form action="insert_move_page.php" method="post">
 
     <label for="move_name">Move name:</label><br>
-    <input type="text" id="move_name" name="move_name"><br>
+    <input type="text" id="move_name" name="move_name" placeholder="Move name..."><br>
 
     <!-- <label for="move_type">Move type:</label><br>
     <input type="text" id="move_type" name="move_type"> -->
@@ -70,7 +113,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     <input type="radio" id="N/A" name="move_time" value="N/A">
     <label for="N/A">N/A</label><br>
 
-    <p>Is it an HM?</p>
+    <p>Is it a Hidden Move?</p>
 
     <!-- Since the value is an int, not a string, there may be a
          problem with the value here. -->
@@ -84,6 +127,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     <input type="submit" value="Submit">
     
 </form>
+</div>
 
 <?php
 
