@@ -32,7 +32,7 @@ input[type=submit]:hover {
   color: black;
 }
 
-div {
+.lists {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -43,10 +43,39 @@ input[list]{
   margin: 20px 0;
 }
 
+.topnav {
+    top:0;
+  position: fixed;
+    width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.topnav a.active {
+  background-color: #008CBA;
+  color: white;
+}
+.main {
+  padding: 16px;
+  margin-top: 30px;
+}
+
     </style>
 </head>
 <body>
-
+<div class="main">
 <?php
 
 // Show all PHP errors.
@@ -70,9 +99,13 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     exit;
 }
 ?>
+<div class="topnav">
+  <a class="active" href="./menu_page.php">Menu</a>
+  <a href="#news">Update Move</a>
+</div>
 
-<h1>Insert a new move!</h1>
-<div>
+<h2 align="center">Insert a new move!</h2>
+<div class="lists">
 <form action="insert_move_page.php" method="post">
 
     <label for="move_name">Move name:</label><br>
@@ -128,6 +161,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     
 </form>
 </div>
+</div>
 
 <?php
 
@@ -149,6 +183,6 @@ if (isset($_POST["move_name"]) && isset($_POST["move_type"]) &&
     $conn->close();
 
 ?>
-
+</div>
 </body>
 </html>
