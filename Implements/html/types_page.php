@@ -38,7 +38,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <p>Sorry, you can only insert into Types table... you can't updating or deleting...</p>
 </div>
 <div class="contents">
-<form action="insert_type_page.php" method="post">
+<form action="types_page.php" method="post">
 <label for="type_name">Type name:</label><br>
     <input type="text" id="type_name" name="type_name" 
     placeholder="Type name...Please check spelling...You can't update or delete in this table..."><br>
@@ -51,34 +51,36 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     <?php 
     $conn->query("USE $dbname;");
     $selectall_sql="SELECT * FROM types;";
-    //第一遍抓取，不需要绘制表格
+    //get the tableresult object to make original table before inserting
     if (!$tableresult = $conn->query($selectall_sql)){ // get types
          echo "Failed to get types.";
          exit;
      }
     
+    // prepare statement for insert a type
     $addstmt = $conn->prepare("INSERT INTO types (poke_type) VALUES (?)");
     $addstmt->bind_param('s', $type_name);
+
     // submit form
     if (isset($_POST["type_name"])){
-
+      //get type name from user
       $type_name=$_POST["type_name"];
+      // execute prepare stmt
       if(!$addstmt->execute()){
           echo $conn->error;
           echo "\n Insert query failed!";
-       }
-       else {
+       }else {
+        echo "\n Insert query Successed! Check at table below!";
         //redirect so refresh works properly
         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
         exit();}
       }
       
-    //第二遍抓取
+    // get table result object second time after inserting
     if (!$tableresult = $conn->query($selectall_sql)){ // get types
-        echo "Failed to get types.";
-        exit;
-    }
-    //只需要在最后绘制表格一次
+      echo "Failed to get types.";
+      exit;}
+    //make a table
     while ($type_names = $tableresult->fetch_array()) {
       echo "<tr>";
       echo "<td>".$type_names['poke_type']. "</td>";

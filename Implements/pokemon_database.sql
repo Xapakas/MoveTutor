@@ -93,10 +93,15 @@ VALUES ('normal'),
        ('fairy'),
        ('glass');
 
--- Add values to pokemon for testing
-
+-- Add values to for testing
 INSERT INTO pokemons (poke_species, poke_name)
 VALUES  ('char', 'charmander'),
         ('bob', 'lizard'),
         ('charles', 'lollipop'),
         ('bake', 'ry');
+
+INSERT INTO moves (move_name,move_type,move_time,is_hm)
+VALUES  ('Thief', 'dark','Past','No'),
+        ('Sleep Talk', 'normal','Present','No'),
+        ('Rain Dance', 'water','Future','No'),
+        ('Dragon Dance', 'dragon','N/A','No');

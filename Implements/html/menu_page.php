@@ -47,14 +47,14 @@ li:hover{
 
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
-  <a href="#pokemon">Pokemon</a>
-  <a href="#pokemon">Poke_Type</a>
-  <a href="#pokemon">Known_Moves</a>
-  <a href="#pokemon">Moves</a>
+  <a href="./pokemons_page.php">Pokemon</a>
+  <a href="./poke_types_page.php">Poke_Type</a>
+  <a href="./known_moves_page.php">Known_Moves</a>
+  <a href="./moves_page.php">Moves</a>
   <a href="./types_page.php">Types</a>
-  <a href="#pokemon">Learn_History</a>
-  <a href="#pokemon">Specific Pokemon</a>
-  <a href="#pokemon">Specific Move</a>
+  <a href="./learn_history_page.php">Learn_History</a>
+  <a href="./specific_pokemon_page.php">Specific Pokemon</a>
+  <a href="./move_trend_page.php">Move Trend</a>
 </div>
 
 
@@ -105,8 +105,8 @@ echo "<ul>";
 ?>
 </ol>
 </li>
-<li><b><a href="#checkmove"> Check on the specific Move</a></b></li>
-<li><b><a href="#checkpoke">Check on the specific Pokemon</a></b></li>
+<li><b><a href="./move_trend_page.php"> Check on Move Trend</a></b></li>
+<li><b><a href="./specific_pokemon_page.php">Check on the specific Pokemon</a></b></li>
 </ul>
 </div>
 </div>

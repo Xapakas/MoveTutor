@@ -31,9 +31,10 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 ?>
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
-  <a class="mainpage" href="#news">Main Move</a>
-  <a href="#news">Delete Move</a>
-  <a href="#news">Update Move</a>
+  <a class="mainpage" href="./moves_page.php">Main Move</a>
+  <a href="./update_move_page.php">Update Move</a>
+  <a href="./delete_move_page.php">Delete Move</a>
+  <a href="./move_trend_page.php">Move Trend</a>
 </div>
 
 <div class="main">
@@ -112,9 +113,12 @@ if (isset($_POST["move_name"]) && isset($_POST["move_type"]) &&
         if (!$add_stmt->execute()) { // insert user data, return possible errors
             echo $conn->error;
             echo "\n Insert query failed!";
-        }
+        }else {
+            //redirect so refresh works properly
+            header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+            exit();}
+          }
 
-    }
 
     $conn->close();
 
