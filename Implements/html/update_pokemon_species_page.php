@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Pokemon Name</title>
+<title>Update Pokemon Species</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
 
 <div class="main">
 <div class="header">
-<h2>Update <i><u>Pokemon Name</u></i> !</h2>
-<p>Update Pokemon name here, you can do other operations through sidebar....</p>
+<h2>Update <i><u>Pokemon Species</u></i> !</h2>
+<p>Update Pokemon species here, you can do other operations through sidebar....</p>
 </div>
 <div class="contents">
 <?php
@@ -41,7 +41,7 @@
         
 
         //wrap table in a form and call self
-        echo '<form action="update_pokemon_name_page.php" method=POST>';
+        echo '<form action="update_pokemon_species_page.php" method=POST>';
         // Begin header ---------------------------------------------
         echo "<table>\n<thead>\n<tr>";
         
@@ -73,9 +73,8 @@
         echo "</tbody>\n</table>\n";
         
         //add a submit button to the form and close out the form
-        echo "<br>";
-        echo '<label for="poke_name">Pokemon name:</label><br>';
-        echo '<input type="text" id="poke_name" name="name" placeholder="Pokemon name...You can update later..."><br>';
+
+        echo '<p>Pokemon species: <input type="text" name="species" /></p>';
         echo '<p><input type="submit"/></p></form>';
     }
 
@@ -102,7 +101,7 @@
     }
 
     // $sql = "SELECT poke_id, poke_species, poke_name FROM pokemons";
-    $sql = "SELECT poke_id, poke_name FROM pokemons";
+    $sql = "SELECT poke_id, poke_species FROM pokemons";
     
 
     if(!$result = $conn->query($sql)){
@@ -116,15 +115,15 @@
     result_to_table($result, $qryres); 
 
     //check if a name was entered into the textbox for UPDATE
-    if(isset($_POST["name"]) && $_POST["name"] != "") {
+    if(isset($_POST["species"]) && $_POST["species"] != "") {
         for($i = 0; $i < $result->num_rows; $i++) {
 
             $id = $qryres[$i][0];
-            $name = $_POST["name"];
+            $species = $_POST["species"];
             //UPDATE statement found in same directory as self
-            $file = file_get_contents('./pokemon_updatename.php', false);
+            $file = file_get_contents('./pokemon_updatespecies.php', false);
             $stmt = $conn->prepare($file);
-            $stmt->bind_param('si', $name, $id); 
+            $stmt->bind_param('si', $species, $id); 
     
             if (isset($_POST["checkbox$id"]) ){
                 if (!$stmt->execute()) {
