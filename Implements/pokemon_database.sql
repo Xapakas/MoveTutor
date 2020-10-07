@@ -29,7 +29,7 @@ CREATE TABLE moves (
     move_name   VARCHAR(32) NOT NULL,
     move_type   VARCHAR(16) NOT NULL,
     move_time   VARCHAR(16) NOT NULL,
-    is_hm       BIT         NOT NULL,
+    is_hm       VARCHAR(32) NOT NULL,
     FOREIGN KEY (move_type) REFERENCES types(poke_type)
                             ON DELETE RESTRICT
 
