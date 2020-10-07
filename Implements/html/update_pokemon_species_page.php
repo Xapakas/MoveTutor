@@ -13,9 +13,10 @@
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a class="mainpage" href="#news">Main Pokemon</a>
-  <a href="#news">Insert Pokemon</a>
-  <a href="#news">Delete Pokemon</a>
-  <a href="#news">Update Species Name</a>
+  <a href="./insert_pokemon_page.php">Insert Pokemon</a>
+  <a href="./update_pokemon_both_page.php">Change Name & Species</a>
+  <a href="./update_pokemon_species_page.php">Evolve to New Species</a>
+  <a href="./specific_pokemon_page.php">Check a Pokemon</a>
 </div>
 
 <div class="main">
