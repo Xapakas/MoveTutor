@@ -12,7 +12,7 @@
 <body>
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
-  <a class="mainpage" href="#news">Main Pokemon</a>
+  <a class="mainpage" href="./pokemons_page.php">Main Pokemon</a>
   <a href="./insert_pokemon_page.php">Insert Pokemon</a>
   <a href="./update_pokemon_both_page.php">Change Name & Species</a>
   <a href="./update_pokemon_species_page.php">Evolve to New Species</a>
