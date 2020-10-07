@@ -73,8 +73,9 @@
         echo "</tbody>\n</table>\n";
         
         //add a submit button to the form and close out the form
-
-        echo '<p>Pokemon name: <input type="text" name="name" /></p>';
+        echo "<br>";
+        echo '<label for="poke_name">Pokemon name:</label><br>';
+        echo '<input type="text" id="poke_name" name="name" placeholder="Pokemon name...You can update later..."><br>';
         echo '<p><input type="submit"/></p></form>';
     }
 

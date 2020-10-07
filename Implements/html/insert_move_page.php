@@ -45,7 +45,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <form action="insert_move_page.php" method="post">
 
     <label for="move_name">Move name:</label><br>
-    <input type="text" id="move_name" name="move_name" placeholder="Move name..."><br>
+    <input type="text" id="move_name" name="move_name" placeholder="Move name...You can update later..."><br>
 
     <!-- <label for="move_type">Move type:</label><br>
     <input type="text" id="move_type" name="move_type"> -->
