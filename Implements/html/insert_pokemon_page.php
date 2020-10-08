@@ -51,6 +51,7 @@ function insertMove($conn, $id, $move_name) {
 
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
+  <a href="./pokemons_page.php">View Pokemon</a>
   <a href="./insert_pokemon_page.php">Insert Pokemon</a>
   <a href="./update_pokemon_both_page.php">Change Name & Species</a>
   <a href="./update_pokemon_name_page.php">Change Name</a>
