@@ -77,7 +77,7 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 
 <?php
 
-        if (isset($_POST["poke_id"]) && isset($_POST["poke_name"]) && isset($_POST["poke_species"])){
+        if (!empty($_POST["poke_id"]) && !empty($_POST["poke_name"]) && !empty($_POST["poke_species"])){
             echo "henlo";
             $updt_stmt = $conn->prepare("UPDATE pokemons SET poke_name = ?, poke_species = ? WHERE poke_id = ?");
             $updt_stmt->bind_param('ssi', $_POST["poke_name"], $_POST["poke_species"], $_POST["poke_id"]);

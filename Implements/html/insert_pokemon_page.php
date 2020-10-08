@@ -8,7 +8,8 @@
 
 <?php
 
-// Show all PHP errors.
+/* Show all PHP errors. */
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -26,24 +27,61 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 }
 
 function insertType($conn, $id, $type_name) {
-    // prepared statement.
-    $ins_stmt = $conn->prepare("INSERT INTO poke_types (poke_id, poke_type)
-                                     VALUES (?, ?);");
-    $ins_stmt->bind_param('is',$id,$_POST[$type_name]);
+    /* Check that the type has been entered. */
+    if (!empty($_POST[$type_name])){
+        /* prepared statement. */
+        $ins_stmt = $conn->prepare("INSERT INTO poke_types (poke_id, poke_type)
+                                         VALUES (?, ?);");
+        $ins_stmt->bind_param('is',$id,$_POST[$type_name]);
 
-    if (!$ins_stmt->execute()) { // add type.
-        echo $conn->error;
-        echo "Failed to insert type.";
-    } 
+        if (!$ins_stmt->execute()) { // add type, return possible errors.
+            echo $conn->error;
+            echo "\n Failed to insert type.";
+        } 
+    }
+
 }
 
 function insertMove($conn, $id, $move_name) {
-    $ins_stmt = $conn->prepare("INSERT INTO known_moves (poke_id,move_name)
-                                                VALUES (?,?);");
-    $ins_stmt->bind_param('is',$id,$_POST[$move_name]);
-    if (!$ins_stmt->execute()) { // add move.
-        echo $conn->error;
-        echo "Failed to insert move.";
+    /* Check that the move has been entered. */
+    if (!empty($_POST["move_name"])){
+        // prepared statement
+        $ins_stmt = $conn->prepare("INSERT INTO known_moves (poke_id,move_name)
+                                         VALUES (?,?);");
+        $ins_stmt->bind_param('is',$id,$_POST[$move_name]);
+
+        if (!$ins_stmt->execute()) { // add move, return possible errors.
+            echo $conn->error;
+            echo "\n Failed to insert move.";
+        }
+
+    }
+}
+
+function validateMoveType($conn, $move_name) {
+    // check that move has been entered.
+    if (!empty($_POST[$move_name])){
+        // prepared statement to select move type.
+        $sel_move_stmt = $conn->prepare("SELECT move_type FROM moves WHERE move_name = ?");
+        $sel_move_stmt->bind_param('s',$_POST[$move_name]);
+
+        if ($sel_move_stmt->execute()){ // execute select statement, return possible errors.
+            echo $conn->error;
+            echo "\n failed to select move type.";
+        }
+
+        $result = $sel_move_stmt->get_result(); // $result is an object
+        $move_type_arr = $result->fetch_assoc(); // turn $result into associative array
+        $move_type = $move_type_arr["move_type"]; // select only value of move_type field (our answer)
+
+        /* Now, compare move type and pokemon types for validity. */
+        
+        if ($move_type != $_POST["poke_type1"] && // move type does not match type 1
+           (!empty($_POST["poke_type2"]) || $move_type != $_POST["poke_type2"]) && // move type does not match type 2
+           ($move_type != "normal")){ // move type is not normal
+            echo "\n ERROR: Move type $move_type does not match pokemon types. Pokemon has not been inserted.";
+            exit;
+        }
     }
 }
 
@@ -78,17 +116,17 @@ function insertMove($conn, $id, $move_name) {
     <label for="poke_type1">Pokemon Type 1:</label><br>
     <input list="types" name="poke_type1" id="poke_type1">
     <datalist id="types">
-    <?php // maybe replace with a procedure
+    <?php
         $sql = "SELECT poke_type FROM types";
-        if (!$result = $conn->query($sql)){ // get types
+        if (!$result = $conn->query($sql)){ // get result object.
             echo "Failed to get types.";
             exit;
         }
-        $types_arr = $result->fetch_all();
+        $types_arr = $result->fetch_all(); // turn object into array.
 
-        for ($i = 0; $i < $result->num_rows; $i++){
+        for ($i = 0; $i < $result->num_rows; $i++){ // iterate through array
             $typename = $types_arr[$i][0];
-            echo "<option value=$typename>";
+            echo "<option value=$typename>"; // print out every value into datalist
         }
     ?>
     </datalist><br>
@@ -100,10 +138,10 @@ function insertMove($conn, $id, $move_name) {
     <label for="move_1">Move 1:</label><br>
     <input list="names" name="move_1" id="move_1">
     <datalist id="names">
-    <?php // again, procedure?
+    <?php
         $sql = "SELECT move_name FROM moves";
         if (!$result = $conn->query($sql)){ // get move names.
-            echo "Failed to get move names.";
+            echo "\n Failed to get move names.";
             exit;
         }
         $names_arr = $result->fetch_all(); // convert to array.
@@ -132,9 +170,20 @@ function insertMove($conn, $id, $move_name) {
 </form>
 
 <?php
-    if (isset($_POST["poke_species"]) && isset($_POST["poke_type1"]) && isset($_POST["move_1"])){
-        /* Firstly, insert the name and species into the pokemon table. */
-        if (isset($_POST["poke_name"])){ // poke_name IS entered
+    /* Check that the mandatory form fields have been filled. */
+    if (!empty($_POST["poke_species"]) && !empty($_POST["poke_type1"]) && !empty($_POST["move_1"])){
+
+        /* Validate that the entered move types are either the same as one of the pokemon's
+           types, or the normal type (as per business rule). */
+
+        validateMoveType($conn,"move_1");
+        validateMoveType($conn,"move_2");
+        validateMoveType($conn,"move_3");
+        validateMoveType($conn,"move_4");
+
+        /* Firstly, insert the species and name (if entered) into the pokemon table. */
+
+        if (!empty($_POST["poke_name"])){ // poke_name IS entered
             // prepared statement, of course.
             $ins_stmt = $conn->prepare("INSERT INTO pokemons (poke_species,poke_name)
                                              VALUES (?,?);");
@@ -143,6 +192,7 @@ function insertMove($conn, $id, $move_name) {
             if (!$ins_stmt->execute()) { // insert user data, return possible errors
                 echo $conn->error;
                 echo "\n Insert query failed!";
+                exit;
             }
         }
         else { // poke_name is NOT entered
@@ -151,42 +201,35 @@ function insertMove($conn, $id, $move_name) {
                                              VALUES (?);");
             $ins_stmt->bind_param('s',$_POST["poke_species"]);
 
-            if (!$ins_stmt->execute()) { // insert user data, return possible errors
+            if (!$ins_stmt->execute()) { // insert pokemon species, return possible errors
                 echo $conn->error;
                 echo "\n Insert query failed!";
+                exit;
             }
         }
-        /* Then, insert types into poke_types. */
+        
+        /* Now, get the ID of the pokemon we just added to use as a foreign key
+           in poke_types and known_moves. */
 
-        $id_object = $conn->query("SELECT max(poke_id) FROM pokemons;"); // get id of added pokemon
-        if (!$id_object){
-            echo "Failed to get pokemon id.";
+        $id_object = $conn->query("SELECT max(poke_id) FROM pokemons;"); // get id object.
+        if (!$id_object){ // check for failure
+            echo "\n Failed to get pokemon id.";
             exit();
         }
-        $id_arr = $id_object->fetch_all(); // turn id into array.
+        $id_arr = $id_object->fetch_all(); // turn object into array.
         $inserted_id = $id_arr[0][0]; // get value [0][0] from the array: the integer id.
 
+        /* Now, insert into poke_types. */
+
         insertType($conn, $inserted_id, "poke_type1");
+        insertType($conn, $inserted_id, "poke_type2");
 
-        if (isset($_POST["poke_type2"])){ // 2 poke types were added
-            insertType($conn, $inserted_id, "poke_type2");
-        } 
-
-        /* Now, insert into knownmoves. */
+        /* Now, insert into known_moves. */
 
         insertMove($conn, $inserted_id, "move_1");
-
-        if (isset($_POST["move_2"])){ 
-            insertMove($conn, $inserted_id, "move_2");
-        }
-
-        if (isset($_POST["move_3"])){ 
-            insertMove($conn, $inserted_id, "move_3");
-        }
-
-        if (isset($_POST["move_4"])){ 
-            insertMove($conn, $inserted_id, "move_4");
-        }
+        insertMove($conn, $inserted_id, "move_2");
+        insertMove($conn, $inserted_id, "move_3");
+        insertMove($conn, $inserted_id, "move_4");
 
         header("Location: {$_SERVER['REQUEST_URI']}", true, 303); // redirect.
 
