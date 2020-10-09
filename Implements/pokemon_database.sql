@@ -162,6 +162,7 @@ DELIMITER ;
 
 
 
+
 -- add values to validation table
 INSERT INTO types (poke_type)
 VALUES ('normal'),

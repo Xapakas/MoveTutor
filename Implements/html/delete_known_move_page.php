@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update a Known Move</title>
+    <title>Delete a Known Move</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,8 +33,8 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
-  <a class="mainpage" href="./moves_page.php">Main Known Move</a>
-  <a href="./delete_move_page.php">Add a Known Move</a>
+  <a class="mainpage" href="./known_moves_page.php">Main Known Move</a>
+  <a href="./insert_known_move_page.php">Add a Known Move</a>
 </div>
 
 <div class="main">
@@ -82,6 +82,7 @@ function result_to_table($result, $qryres) {
         
         //add a submit button to the form and close out the form
         echo '<input type="submit" value="Delete">';
+        echo '</form>';
     }
 
 
@@ -95,7 +96,6 @@ if(!$result = $conn->query($sql)){
     echo "Query failed!";
     exit;
 }
-
 $result = $conn->query($sql);
 $qryres = $result->fetch_all();
 
@@ -106,7 +106,7 @@ result_to_table($result, $qryres);
         $id = $qryres[$i][0];
         $name = $qryres[$i][3];
         //UPDATE statement found in same directory as self
-        $file = file_get_contents('./../knownmoves_delete.sql', false);
+        $file = file_get_contents('./../knownmoves_insert.sql', false);
         $stmt = $conn->prepare($file);
         $stmt->bind_param('is', $id, $name); 
 
