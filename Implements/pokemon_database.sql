@@ -70,6 +70,75 @@ CREATE TABLE poke_types (
                         ON DELETE RESTRICT
 );
 
+--FUNCTION for getting the number of known_moves of a pokemon
+CREATE FUNCTION get_move_numbers (pkmn_id INT)
+RETURNS INT
+RETURN(
+    SELECT COUNT(move_name)
+    FROM known_moves
+    WHERE known_moves.poke_id=pkmn_id
+);
+
+--FUNCTION for getting the number of types of a pokemon
+CREATE FUNCTION get_type_numbers (pkmn_id INT)
+RETURNS INT
+RETURN(
+    SELECT COUNT(poke_type)
+    FROM poke_types
+    WHERE poke_types.poke_id=pkmn_id
+);
+
+--TRIGGERS
+
+---check_max_moves
+DELIMITER //
+CREATE TRIGGER check_max_moves
+BEFORE INSERT ON known_moves
+FOR EACH ROW
+BEGIN
+    IF get_move_numbers(NEW.poke_id)>=4 THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Too many moves for pokemon!';
+    END IF;
+END;//
+DELIMITER ;
+-- check_min_moves
+DELIMITER //
+CREATE TRIGGER check_min_moves
+BEFORE DELETE ON known_moves
+FOR EACH ROW
+BEGIN
+    IF get_move_numbers(OLD.poke_id)=1 THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A pokemon should know at least one move!';
+    END IF;
+END;//
+DELIMITER ;
+
+-- check_max_type
+DELIMITER //
+CREATE TRIGGER check_max_type
+BEFORE INSERT ON poke_types
+FOR EACH ROW
+BEGIN
+    IF get_type_numbers(NEW.poke_id)>=2 THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Too many type for a Pokemon!';
+    END IF;
+END;//
+DELIMITER ;
+
+-- check_min_type
+DELIMITER //
+CREATE TRIGGER check_min_type
+BEFORE DELETE ON poke_types
+FOR EACH ROW
+BEGIN
+    IF get_type_numbers(OLD.poke_id)=1 THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A pokemon should have at least one type!';
+    END IF;
+END;//
+DELIMITER ;
+
+
+
 
 
 -- add values to validation table
