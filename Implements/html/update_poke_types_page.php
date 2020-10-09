@@ -21,6 +21,11 @@
 
 <div class="contents">
 <?php
+    /* Put redirect at start of file to avoid header errors. */
+    if (!empty($_POST["type_name"])){
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+    }
+
     // Show ALL PHP's errors.
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -133,10 +138,10 @@
             if (!empty($_POST["checkbox$id$old_type"]) ){
                 if (!$stmt->execute()) {
                     echo $conn->error;
-                } else {
-                    //redirect so refresh works properly
-                    header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-                    exit();
+                // } else {
+                //     //redirect so refresh works properly
+                //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+                //     exit();
                 }
 
             }
