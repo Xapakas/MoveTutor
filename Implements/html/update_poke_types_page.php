@@ -1,6 +1,3 @@
-<!--
-    This file will update the records in poke_types.
--->
 
 <!DOCTYPE html>
 <html>
@@ -9,29 +6,19 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<?php
-    /* Put redirect at start of file to avoid header errors. */
-    if (!empty($_POST["species"])){
-        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-    }
 
-    echo file_get_contents("./pokemon_control_menu.html", false);
-
-?>
-<!-- <div class="sidebar">
-  <a class="active" href="./menu_page.php">Menu</a>
-  <a class="mainpage" href="./pokemons_page.php">Main Pokemon</a>
-  <a href="./insert_pokemon_page.php">Insert Pokemon</a>
-  <a href="./update_pokemon_both_page.php">Change Name & Species</a>
-  <a href="./update_pokemon_species_page.php">Evolve to New Species</a>
-  <a href="./specific_pokemon_page.php">Check a Pokemon</a>
-</div> -->
+<div class='sidebar'>
+    <a class="active" href="./menu_page.php">Menu</a>
+    <a href="./insert_poke_types_page.php">Insert Poke type</a>
+    <a href="./delete_poke_types_page.php">Delete Poke type</a>
+</div>
 
 <div class="main">
 <div class="header">
 <h2>Update <i><u>Pokemon Types</u></i> !</h2>
 <p>Update Pokemon types here! You can do other operations through sidebar.</p>
 </div>
+
 <div class="contents">
 <?php
     // Show ALL PHP's errors.
@@ -66,7 +53,7 @@
         
 
         //wrap table in a form and call self
-        echo '<form action="poke_types_update_page.php" method=POST>';
+        echo '<form action="update_poke_types_page.php" method=POST>';
         // Begin header ---------------------------------------------
         echo "<table>\n<thead>\n<tr>";
         
@@ -146,15 +133,12 @@
             if (!empty($_POST["checkbox$id$old_type"]) ){
                 if (!$stmt->execute()) {
                     echo $conn->error;
-            //     } else {
-            //         //redirect so refresh works properly
-            //         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-            //         exit();
-            //     }
-                
-            // } else {
-            //     //rows not selected
+                } else {
+                    //redirect so refresh works properly
+                    header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+                    exit();
                 }
+
             }
         }
     }
