@@ -95,13 +95,16 @@ VALUES ('normal'),
 
 -- Add values to for testing
 INSERT INTO pokemons (poke_species, poke_name)
-VALUES  ('char', 'charmander'),
-        ('bob', 'lizard'),
-        ('charles', 'lollipop'),
-        ('bake', 'ry');
+VALUES  ('charmander', 'char'),
+        ('pikachu', 'pika');
 
 INSERT INTO moves (move_name,move_type,move_time,is_hm)
-VALUES  ('Thief', 'dark','Past','No'),
-        ('Sleep Talk', 'normal','Present','No'),
-        ('Rain Dance', 'water','Future','No'),
-        ('Dragon Dance', 'dragon','N/A','No');
+VALUES  ('thief', 'dark','Past','No'),
+        ('sleep talk', 'normal','Present','No'),
+        ('rain dance', 'water','Future','No'),
+        ('dragon dance', 'dragon','N/A','No');
+
+INSERT INTO known_moves (poke_id,move_name)
+VALUES (1,'dragon dance'),
+       (1,'sleep talk'),
+       (2,'sleep talk');
