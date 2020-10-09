@@ -126,7 +126,7 @@
             $name = $_POST["name"];
             $species = $_POST["species"];
             //UPDATE statement found in same directory as self
-            $file = file_get_contents('./../pokemon_updatenameandspecies.php', false);
+            $file = file_get_contents('./../pokemon_updatenameandspecies.sql', false);
             $stmt = $conn->prepare($file);
             $stmt->bind_param('ssi', $name, $species, $id); 
     

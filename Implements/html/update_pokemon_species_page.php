@@ -127,7 +127,7 @@ echo file_get_contents("./pokemon_control_menu.html", false);
             $id = $qryres[$i][0];
             $species = $_POST["species"];
             //UPDATE statement found in same directory as self
-            $file = file_get_contents('./../pokemon_updatespecies.php', false);
+            $file = file_get_contents('./../pokemon_updatespecies.sql', false);
             $stmt = $conn->prepare($file);
             $stmt->bind_param('si', $species, $id); 
     
@@ -153,11 +153,8 @@ echo file_get_contents("./pokemon_control_menu.html", false);
 
 
     $conn->close();
-
-    
 ?>
 </div>
 </div>
 </body>
 </html>
-
