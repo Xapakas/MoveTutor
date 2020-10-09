@@ -158,6 +158,17 @@ BEGIN
 END;//
 DELIMITER ;
 
+-- insert to known_move before insert to learn_history
+DELIMITER //
+CREATE TRIGGER add_to_known_move
+BEFORE INSERT ON learn_history
+FOR EACH ROW
+BEGIN
+    INSERT INTO known_moves (poke_id,move_name)
+    VALUES (NEW.poke_id,NEW.move_name);
+END;//
+DELIMITER ;
+
 
 
 
@@ -191,11 +202,24 @@ VALUES  ('charmander', 'char'),
 
 INSERT INTO moves (move_name,move_type,move_time,is_hm)
 VALUES  ('thief', 'dark','Past','No'),
-        ('sleep talk', 'normal','Present','No'),
-        ('rain dance', 'water','Future','No'),
-        ('dragon dance', 'dragon','N/A','No');
+        ('sleep_talk', 'normal','Present','No'),
+        ('rain_dance', 'water','Future','No'),
+        ('fusion_bolt', 'electric','Past','No'),
+        ('dragon_breath', 'dragon','Future','No'),
+        ('fire_lash', 'fire','Present','No'),
+        ('dragon_dance', 'dragon','N/A','No');
 
 INSERT INTO known_moves (poke_id,move_name)
-VALUES (1,'dragon dance'),
-       (1,'sleep talk'),
-       (2,'sleep talk');
+VALUES (1,'dragon_dance'),
+       (1,'sleep_talk'),
+       (2,'sleep_talk');
+
+INSERT INTO poke_types (poke_id, poke_type)
+VALUES (1,'dragon'),
+       (1,'fire'),
+       (2,'electric');
+
+INSERT INTO learn_history (poke_id, move_name)
+VALUES (1,'dragon_breath'),
+       (1,'fire_lash'),
+       (2,'fusion_bolt');
