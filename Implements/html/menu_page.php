@@ -45,7 +45,12 @@ li:hover{
 </head>
 <body>
 
-<div class="sidebar">
+<?php 
+
+  echo file_get_contents("./main_menu.html", false);
+?>
+
+<!-- <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a href="./pokemons_page.php">Pokemon</a>
   <a href="./poke_types_page.php">Poke_Type</a>
@@ -55,17 +60,11 @@ li:hover{
   <a href="./learn_history_page.php">Learn_History</a>
   <a href="./specific_pokemon_page.php">Specific Pokemon</a>
   <a href="./move_trend_page.php">Move Trend</a>
-</div>
+</div> -->
 
 
 
 <div class="main">
-<p>
-<b>Hyperlinks go to currently working pages</b><br>
-<a href="./insert_move_page.php">Insert Move Page</a> <br>
-
-<a href="./update_pokemon_name_page.php">Update Pokemon Name Page</a>
-</p>
 <div class="header">
 <h1>Welcome to <i><b><u>Tutor Database</u></b></i></h2>
 <h2>Which operation do you want to do?</h2>
