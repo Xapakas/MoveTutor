@@ -11,11 +11,11 @@
 </head>
 <body>
 
-<?php
-
-    echo file_get_contents("./main_menu.html", false);
-
-?>
+<div class='sidebar'>
+    <a class="active" href="./menu_page.php">Menu</a>
+    <a href="./update_poke_types_page.php">Update Poke type</a>
+    <a href="./delete_poke_types_page.php">Delete Poke type</a>
+</div>
 <!-- <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a class="mainpage" href="./pokemons_page.php">Main Pokemon</a>
