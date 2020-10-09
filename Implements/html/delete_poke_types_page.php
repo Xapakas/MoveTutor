@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete a Known Move</title>
+    <title>Delete a Poke Type</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <?php
 
-/* Show all PHP errors. */
-
+// Show all PHP errors.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-/* Set connection info. */
 
 $dbhost = 'localhost';
 $dbuser = 'webuser';
 $dbpass = 'pass';
 $dbname = 'move_tutor';
 
-/* Make connection, and return an error if it fails. */
-
+/* Make connection, and return error if it fails. */
 if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     echo "Error: Failed to make a MySQL connection: " . "<br>";
     echo "Errno: $conn->connect_errno; i.e. $conn->connect_error \n";
@@ -33,15 +29,16 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 
 <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
-  <a class="mainpage" href="./known_moves_page.php">Main Known Move</a>
-  <a href="./insert_known_move_page.php">Add a Known Move</a>
+  <a class="mainpage" href="./poke_types_page.php">Main Poke_type</a>
+  <a href="./insert_poke_type_page.php">Insert Poke type</a>
+  <a href="./update_poke_type_page.php">Update Poke type</a>
 </div>
 
 <div class="main">
 
 <div class="header">
-<h2>Forget a <i><u>Known_Move</u></i>!</h2>
-<p>Select a the name of the move you want to forget....</p>
+    <h2>Delete a <i><u>Poke_Type</u></i>!</h2>
+    <p>Select poke_type you want to delete....</p>
 </div>
 
 <div class="contents">
@@ -89,7 +86,7 @@ function result_to_table($result, $qryres) {
     $conn->query("USE move_tutor;");
     $sql="SELECT * FROM pokemons
     NATURAL JOIN 
-    (SELECT poke_id, move_name FROM known_moves) AS a
+    (SELECT * FROM poke_types) AS a
     ORDER BY poke_id ASC;";
     
 if(!$result = $conn->query($sql)){
@@ -104,11 +101,11 @@ result_to_table($result, $qryres);
     for($i = 0; $i < $result->num_rows; $i++) {
 
         $id = $qryres[$i][0];
-        $name = $qryres[$i][3];
+        $poke_type = $qryres[$i][3];
         //UPDATE statement found in same directory as self
-        $file = file_get_contents('./../knownmoves_delete.sql', false);
+        $file = file_get_contents('./../poketypes_insert.sql', false);
         $stmt = $conn->prepare($file);
-        $stmt->bind_param('is', $id, $name); 
+        $stmt->bind_param('is', $id, $poke_type); 
 
         if (isset($_POST["checkbox$id"]) ){
             if (!$stmt->execute()) {
