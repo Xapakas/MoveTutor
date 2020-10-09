@@ -10,14 +10,19 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="sidebar">
+<?php
+
+echo file_get_contents("./pokemon_control_menu.html", false);
+
+?>
+<!-- <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a class="mainpage" href="./pokemons_page.php">Main Pokemon</a>
   <a href="./insert_pokemon_page.php">Insert Pokemon</a>
   <a href="./update_pokemon_both_page.php">Change Name & Species</a>
   <a href="./update_pokemon_species_page.php">Evolve to New Species</a>
   <a href="./specific_pokemon_page.php">Check a Pokemon</a>
-</div>
+</div> -->
 
 <div class="main">
 <div class="header">
@@ -122,7 +127,7 @@
             $id = $qryres[$i][0];
             $species = $_POST["species"];
             //UPDATE statement found in same directory as self
-            $file = file_get_contents('./pokemon_updatespecies.php', false);
+            $file = file_get_contents('./../pokemon_updatespecies.php', false);
             $stmt = $conn->prepare($file);
             $stmt->bind_param('si', $species, $id); 
     

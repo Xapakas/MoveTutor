@@ -87,7 +87,7 @@ function validateMoveType($conn, $move_name) {
 
 ?>
 
-<div class="sidebar">
+<!-- <div class="sidebar">
   <a class="active" href="./menu_page.php">Menu</a>
   <a href="./pokemons_page.php">View Pokemon</a>
   <a href="./insert_pokemon_page.php">Insert Pokemon</a>
@@ -95,8 +95,12 @@ function validateMoveType($conn, $move_name) {
   <a href="./update_pokemon_name_page.php">Change Name</a>
   <a href="./update_pokemon_species_page.php">Evolve to New Species</a>
   <a href="./specific_pokemon_page.php">Check a Pokemon</a>
-</div>
+</div> -->
+<?php
 
+    echo file_get_contents("./pokemon_control_menu.html", false);
+
+?>
 <div class="main">
 
 <div class="header">
