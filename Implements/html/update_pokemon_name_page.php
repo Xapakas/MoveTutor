@@ -86,11 +86,6 @@
         echo '<p><input type="submit"/></p></form>';
     }
 
-    function insert_to_table() {
-
-
-    }
-
 
     $dbhost = 'localhost';
     $dbuser = 'webuser';

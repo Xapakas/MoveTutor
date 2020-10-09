@@ -42,7 +42,8 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <div class="main">
 
 <div class="header">
-    <h2>Select a move and update its time (past, present, or future).</h2>
+<h2>Update <i><u>Move</u></i> !</h2>
+<p>Select a move and update its time (past, present, or future).</p>
 </div>
 
 <div class="contents">

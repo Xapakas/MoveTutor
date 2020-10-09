@@ -1,6 +1,6 @@
 /*
     Implementation 2
-    Jacob Ballard, Xu Song, Noah Feld, Malachi Beerram
+    Jacob Ballard, Xu Song, Noah Feld
     CSC 362
 */
 
@@ -88,6 +88,15 @@ RETURN(
     WHERE poke_types.poke_id=pkmn_id
 );
 
+--FUNCTION for checking if the move is hm
+CREATE FUNCTION check_hm (moveName VARCHAR(50))
+RETURNS VARCHAR(3)
+RETURN(
+    SELECT is_hm
+    FROM moves
+    WHERE moves.move_name=moveName
+);
+
 --TRIGGERS
 
 ---check_max_moves
@@ -133,6 +142,18 @@ FOR EACH ROW
 BEGIN
     IF get_type_numbers(OLD.poke_id)=1 THEN
      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A pokemon should have at least one type!';
+    END IF;
+END;//
+DELIMITER ;
+
+-- check_hm
+DELIMITER //
+CREATE TRIGGER check_hm
+BEFORE DELETE ON known_moves
+FOR EACH ROW
+BEGIN
+    IF check_hm(OLD.move_name)="Yes" THEN
+     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'You cannot forget a hidden move!';
     END IF;
 END;//
 DELIMITER ;

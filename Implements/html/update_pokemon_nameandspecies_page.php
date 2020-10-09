@@ -21,8 +21,8 @@
 
 <div class="main">
 <div class="header">
-<h2>Update <i><u>Pokemon Name</u></i> !</h2>
-<p>Update Pokemon name here, you can do other operations through sidebar....</p>
+<h2>Update Pokemon <i><u>Name & Species</u></i> !</h2>
+<p>Update both Pokemon name and species here, you can do other operations through sidebar....</p>
 </div>
 <div class="contents">
 <?php
