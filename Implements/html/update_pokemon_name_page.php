@@ -12,6 +12,10 @@
 <body>
 
 <?php
+    /* Have redirect at top of file to avoid header errors. */
+    if (!empty($_POST["name"])){ // redirect if name form is filled out
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+    }
 
     echo file_get_contents("./pokemon_control_menu.html", false);
 
@@ -70,7 +74,7 @@
             for($j=0; $j<$n_cols + 1; $j++){
                 if ($j == 0) {
                     //checkbox
-                    echo '<td><input type="checkbox" name="checkbox' . $qryres[$i][$j] . '" value=' . $qryres[$i][$j] . '/></td>';
+                    echo '<td><input type="checkbox" name="checkbox' . $qryres[$i][$j] . '" value=' . $qryres[$i][$j] . '></td>';
                 } else {
                     echo "<td>" . $qryres[$i][$j - 1] . "</td>";
                 }
@@ -84,6 +88,11 @@
         echo '<label for="poke_name">Pokemon name:</label><br>';
         echo '<input type="text" id="poke_name" name="name" placeholder="Pokemon name...You can update later..."><br>';
         echo '<p><input type="submit"/></p></form>';
+    }
+
+    function insert_to_table() {
+
+
     }
 
 
@@ -118,7 +127,7 @@
     result_to_table($result, $qryres); 
 
     //check if a name was entered into the textbox for UPDATE
-    if(isset($_POST["name"]) && $_POST["name"] != "") {
+    if(!empty($_POST["name"])) {
         for($i = 0; $i < $result->num_rows; $i++) {
 
             $id = $qryres[$i][0];
@@ -128,33 +137,26 @@
             $stmt = $conn->prepare($file);
             $stmt->bind_param('si', $name, $id); 
     
-            if (isset($_POST["checkbox$id"]) ){
+            if (!empty($_POST["checkbox$id"])){
                 if (!$stmt->execute()) {
                     echo $conn->error;
-                } else {
-                    //redirect so refresh works properly
-                    header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-                    exit();
-                }
+                // } else {
+                //     //redirect so refresh works properly
+                //     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+                //     exit();
+                // }
                 
-            } else {
-                //rows not selected
+            // } else {
+            //     //rows not selected
+                }
             }
         }
     }
     
-    
-    
-
-    
-
-
     $conn->close();
 
-    
 ?>
 </div>
 </div>
 </body>
 </html>
-

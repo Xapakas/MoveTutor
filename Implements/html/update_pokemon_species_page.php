@@ -11,6 +11,10 @@
 </head>
 <body>
 <?php
+    /* Put redirect at start of file to avoid header errors. */
+    if (!empty($_POST["species"])){
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+    }
 
 echo file_get_contents("./pokemon_control_menu.html", false);
 
@@ -121,7 +125,7 @@ echo file_get_contents("./pokemon_control_menu.html", false);
     result_to_table($result, $qryres); 
 
     //check if a name was entered into the textbox for UPDATE
-    if(isset($_POST["species"]) && $_POST["species"] != "") {
+    if(!empty($_POST["species"])) {
         for($i = 0; $i < $result->num_rows; $i++) {
 
             $id = $qryres[$i][0];
@@ -134,25 +138,21 @@ echo file_get_contents("./pokemon_control_menu.html", false);
             if (isset($_POST["checkbox$id"]) ){
                 if (!$stmt->execute()) {
                     echo $conn->error;
-                } else {
-                    //redirect so refresh works properly
-                    header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-                    exit();
-                }
+            //     } else {
+            //         //redirect so refresh works properly
+            //         header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+            //         exit();
+            //     }
                 
-            } else {
-                //rows not selected
+            // } else {
+            //     //rows not selected
+                }
             }
         }
     }
     
-    
-    
-
-    
-
-
     $conn->close();
+    
 ?>
 </div>
 </div>
