@@ -23,12 +23,10 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
     exit;
 }
 ?>
-    
-    <?php
-
-echo file_get_contents("./pokemon_control_menu.html", false);
-
-?>
+<div class='sidebar'>
+    <a class="active" href="./menu_page.php">Menu</a>
+    <a href="./insert_learn_history_page.php">Insert to Learn_History</a>
+</div>
 
 
 <div class="main">

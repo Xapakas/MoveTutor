@@ -201,13 +201,13 @@ VALUES  ('charmander', 'char'),
         ('pikachu', 'pika');
 
 INSERT INTO moves (move_name,move_type,move_time,is_hm)
-VALUES  ('thief', 'dark','Past','No'),
-        ('sleep_talk', 'normal','Present','No'),
-        ('rain_dance', 'water','Future','No'),
-        ('fusion_bolt', 'electric','Past','No'),
-        ('dragon_breath', 'dragon','Future','No'),
-        ('fire_lash', 'fire','Present','No'),
-        ('dragon_dance', 'dragon','N/A','No');
+VALUES  ('Thief', 'dark','Past','No'),
+        ('Sleep_Talk', 'normal','Present','No'),
+        ('Rain_Dance', 'water','Future','No'),
+        ('Fusion_Bolt', 'electric','Past','No'),
+        ('Dragon_Breath', 'dragon','Future','No'),
+        ('Fire_Lash', 'fire','Present','No'),
+        ('Dragon_Dance', 'dragon','N/A','No');
 
 INSERT INTO known_moves (poke_id,move_name)
 VALUES (1,'dragon_dance'),
