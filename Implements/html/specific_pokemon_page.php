@@ -24,15 +24,20 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 }
 ?>
     
-    <?php
-
-echo file_get_contents("./pokemon_control_menu.html", false);
-
-?>
+    <div class="sidebar">
+    <a class="active" href="./menu_page.php">Menu</a>
+    <a href="./pokemons_page.php">Pokemon</a>
+    <a href="./poke_types_page.php">Poke_Type</a>
+    <a href="./known_moves_page.php">Known_Moves</a>
+    <a href="./moves_page.php">Moves</a>
+    <a href="./types_page.php">Types</a>
+    <a href="./learn_history_page.php">Learn_History</a>
+    <a href="./move_trend_page.php">Move Trend</a>
+</div>
 
 <div class="main">
 <div class="header">
-<h2>Welcome to the <i><u>Pokemon</u></i> Page!</h2>
+<h2>Come check <i><u>Pokemon</u></i> Full Information!</h2>
 <p>This page shows general information about all Pokemon.</p>
 </div>
 <div class="contents">
@@ -41,11 +46,20 @@ echo file_get_contents("./pokemon_control_menu.html", false);
     <?php
     $conn->query("USE move_tutor;");
     $sql="SELECT * FROM pokemons
-            NATURAL JOIN
-            (SELECT poke_id, GROUP_CONCAT(move_name) AS known_moves
-            FROM known_moves
-            GROUP BY poke_id) AS t";
-    $result = $conn->query($sql);
+    INNER JOIN
+    (SELECT poke_id, GROUP_CONCAT(move_name) AS Moves
+    FROM known_moves
+    GROUP BY poke_id) AS t USING(poke_id)
+    INNER JOIN
+    (SELECT poke_id, GROUP_CONCAT(poke_type) AS Types
+    FROM poke_types
+    GROUP BY poke_id) AS a USING(poke_id)
+    INNER JOIN
+    (SELECT poke_id, COUNT(move_name) AS Learning_Time
+    FROM learn_history
+    GROUP BY poke_id) AS b USING(poke_id);";
+            
+    $result = $conn->query($sql) or die($conn->error);
     $qryres = $result->fetch_all();
     $n_rows = $result->num_rows; // num_rows
     $n_cols = $result->field_count; // num_col

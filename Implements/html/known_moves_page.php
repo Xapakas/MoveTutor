@@ -42,9 +42,9 @@ if (!$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname)){
 <?php
     $conn->query("USE move_tutor;");
     $sql="SELECT * FROM pokemons
-    NATURAL JOIN 
-    (SELECT poke_id, GROUP_CONCAT(move_name) AS known_moves 
-    FROM known_moves 
+    NATURAL JOIN
+    (SELECT poke_id, GROUP_CONCAT(move_name) AS known_moves
+    FROM known_moves
     GROUP BY poke_id) AS t;";
     $result = $conn->query($sql);
     $qryres = $result->fetch_all();
