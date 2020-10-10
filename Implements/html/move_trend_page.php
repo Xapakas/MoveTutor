@@ -40,8 +40,13 @@ echo file_get_contents("./main_menu.html", false);
     <tbody>
     <?php
     $conn->query("USE move_tutor;");
-    $sql="SELECT learn_history.move_name, COUNT(learn_history.move_name) AS times_taught FROM learn_history
-            ORDER BY times_taught;";
+    $sql="SELECT * FROM moves
+            INNER JOIN
+            (SELECT learn_history.move_name, COUNT(learn_history.move_name) AS times_taught 
+            FROM learn_history
+            GROUP BY learn_history.move_name) AS a
+            USING (move_name)
+            ORDER BY times_taught ASC;";
     $result = $conn->query($sql);
     $qryres = $result->fetch_all();
     $n_rows = $result->num_rows; // num_rows
