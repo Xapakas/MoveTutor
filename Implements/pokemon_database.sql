@@ -198,7 +198,9 @@ VALUES ('normal'),
 -- Add values to for testing
 INSERT INTO pokemons (poke_species, poke_name)
 VALUES  ('charmander', 'char'),
-        ('pikachu', 'pika');
+        ('pikachu', 'pika'),
+        ('wailord', 'will'),
+        ('pelliper', 'pelly');
 
 INSERT INTO moves (move_name,move_type,move_time,is_hm)
 VALUES  ('Thief', 'dark','Past','No'),
@@ -207,19 +209,27 @@ VALUES  ('Thief', 'dark','Past','No'),
         ('Fusion_Bolt', 'electric','Past','No'),
         ('Dragon_Breath', 'dragon','Future','No'),
         ('Fire_Lash', 'fire','Present','No'),
+        ('Bouncy_Bobble', 'water','Present','No'),
         ('Dragon_Dance', 'dragon','N/A','No');
-
-INSERT INTO known_moves (poke_id,move_name)
-VALUES (1,'dragon_dance'),
-       (1,'sleep_talk'),
-       (2,'sleep_talk');
 
 INSERT INTO poke_types (poke_id, poke_type)
 VALUES (1,'dragon'),
        (1,'fire'),
-       (2,'electric');
+       (2,'electric'),
+       (3,'water'),
+       (4,'water'),
+       (4,'flying');
+
+INSERT INTO known_moves (poke_id,move_name)
+VALUES (1,'dragon_dance'),
+       (1,'sleep_talk'),
+       (2,'sleep_talk'),
+       (3,'Rain_Dance'),
+       (4,'Rain_Dance');
 
 INSERT INTO learn_history (poke_id, move_name)
 VALUES (1,'dragon_breath'),
        (1,'fire_lash'),
-       (2,'fusion_bolt');
+       (2,'fusion_bolt'),
+       (3,'Bouncy_Bobble'),
+       (4,'Bouncy_Bobble');

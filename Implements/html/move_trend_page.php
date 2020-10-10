@@ -46,7 +46,7 @@ echo file_get_contents("./main_menu.html", false);
             FROM learn_history
             GROUP BY learn_history.move_name) AS a
             USING (move_name)
-            ORDER BY times_taught ASC;";
+            ORDER BY times_taught DESC;";
     $result = $conn->query($sql);
     $qryres = $result->fetch_all();
     $n_rows = $result->num_rows; // num_rows
